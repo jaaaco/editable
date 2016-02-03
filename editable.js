@@ -53,7 +53,7 @@ $(function(){
             $(this).select();
         })
         .on('change', ':text[data-format]', function () {
-            switch ($(this).data().format) {
+            switch ($(this).attr('data-format')) {
                 case 'currency':
                     this.value = this.value.replace(',','.');
                     this.value = this.value.replace(' ','');
@@ -72,9 +72,9 @@ $(function(){
                     break;
             }
 
-            var field = $(this).data().field,
-                collection = $(this).data().collection,
-                id = $(this).data().id;
+            var field = $(this).attr('data-field'),
+                collection = $(this).attr('data-collection'),
+                id = $(this).attr('data-if');
 
             if (!collection) {
                 collection = $(this).closest('form').attr('data-collection');
@@ -94,11 +94,11 @@ $(function(){
         });
 
     $('body').on('change', 'form[data-collection] textarea[data-field], form[data-collection] :text[data-field], form[data-collection] input[type=email],form[data-collection] input[type=password], form[data-collection] input[type=number]', function (e, isFormated) {
-        var field = $(this).data().field,
-            collection = $(this).data().collection,
-            id = $(this).data().id;
+        var field = $(this).attr('data-field'),
+            collection = $(this).attr('data-collection'),
+            id = $(this).attr('data-id');
 
-        if (!isFormated && $(this).data().format) {
+        if (!isFormated && $(this).attr('data-format')) {
             return;
         }
 
