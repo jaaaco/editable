@@ -2,6 +2,8 @@ $(function(){
     'use strict';
 
     $('body').on('change', 'input[type="checkbox"].editable', function(){
+
+
         var field = $(this).attr('data-field');
         var collection = $(this).attr('data-collection');
         var id = $(this).attr('data-id');
@@ -17,6 +19,8 @@ $(function(){
 
         var data = {};
         data[field] = $(this).is(':checked');
+
+        console.log('editablem change', collection, id, data, field);
 
         var collectionObject = collection === 'Meteor.users' ? Meteor.users : window[collection];
 
@@ -74,7 +78,7 @@ $(function(){
 
             var field = $(this).attr('data-field'),
                 collection = $(this).attr('data-collection'),
-                id = $(this).attr('data-if');
+                id = $(this).attr('data-id');
 
             if (!collection) {
                 collection = $(this).closest('form').attr('data-collection');
